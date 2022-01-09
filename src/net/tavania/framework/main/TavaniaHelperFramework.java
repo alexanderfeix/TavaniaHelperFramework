@@ -4,6 +4,7 @@ import net.tavania.framework.command.CommandExecuter;
 import net.tavania.framework.debug.DebugManager;
 import net.tavania.framework.logger.ConsoleLogger;
 import net.tavania.framework.sql.mysql.MySQLDatabase;
+import net.tavania.framework.thread.TavaniaThread;
 
 /*
 
@@ -39,6 +40,7 @@ public class TavaniaHelperFramework {
      * Demo-Application with examples of the sql-methods
      * @param args
      */
+
     /*
     public static void main(String[] args) {
         MySQLDatabase mySQLDatabase = new MySQLDatabase("localhost", "mysql", "test", "", 3306);
@@ -62,7 +64,11 @@ public class TavaniaHelperFramework {
         System.out.println(mySQLDatabase.getMySQLHelper().exists("Id", "Test"));
         System.out.println(mySQLDatabase.getMySQLHelper().countAll("Id"));
         System.out.println(mySQLDatabase.getMySQLHelper().getStringValue("Message", "Test", "Id"));
+        MySQLDatabase mySQLDatabase = new MySQLDatabase("localhost", "mysql", "test", "", 3306);
+        TavaniaThread tavaniaThread = new TavaniaThread(new TestThread(), "TestThread", "Sunday");
+        tavaniaThread.registerThread(mySQLDatabase);
+        TavaniaThread.stopThread("TestThread", mySQLDatabase);
+        System.out.println("Running threads: " + TavaniaThread.runningThreads());
     }
      */
-
 }

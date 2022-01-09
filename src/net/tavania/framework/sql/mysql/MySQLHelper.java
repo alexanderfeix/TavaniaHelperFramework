@@ -31,7 +31,7 @@ public class MySQLHelper {
      * Creating the SQL-Table
      *
      * @param name       is the table-name
-     * @param attributes are the sql-attributes (e.g. LogId INT, LogDate VARCHAR(100), Message VARCHAR(100))
+     * @param attributes are the sql-attributes (e.g. INT, VARCHAR(100), VARCHAR(100))
      * @param columns    are the table-columns (e.g. LogId, LogDate, Message)
      */
     public void createTable(String name, String[] attributes, String[] columns) {
@@ -338,6 +338,46 @@ public class MySQLHelper {
             PreparedStatement ps = getConnection().prepareStatement("UPDATE " + getTableName() + " SET " + columnLabel + " = ? WHERE " + keyColumn + " = ?");
             ps.setString(1, value);
             ps.setInt(2, key);
+            ps.executeUpdate();
+            ps.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    /**
+     * Sets a value
+     *
+     * @param keyColumn   is the column in the table where the value should get replaced
+     * @param key         is the identifier in the table column
+     * @param columnLabel identifies the right field in the selected row
+     * @param value       is the value to write in the selected field
+     */
+    public void setValue(String keyColumn, int key, String columnLabel, boolean value) {
+        try {
+            PreparedStatement ps = getConnection().prepareStatement("UPDATE " + getTableName() + " SET " + columnLabel + " = ? WHERE " + keyColumn + " = ?");
+            ps.setBoolean(1, value);
+            ps.setInt(2, key);
+            ps.executeUpdate();
+            ps.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    /**
+     * Sets a value
+     *
+     * @param keyColumn   is the column in the table where the value should get replaced
+     * @param key         is the identifier in the table column
+     * @param columnLabel identifies the right field in the selected row
+     * @param value       is the value to write in the selected field
+     */
+    public void setValue(String keyColumn, String key, String columnLabel, boolean value) {
+        try {
+            PreparedStatement ps = getConnection().prepareStatement("UPDATE " + getTableName() + " SET " + columnLabel + " = ? WHERE " + keyColumn + " = ?");
+            ps.setBoolean(1, value);
+            ps.setString(2, key);
             ps.executeUpdate();
             ps.close();
         } catch (Exception ex) {
