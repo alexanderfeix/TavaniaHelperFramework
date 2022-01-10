@@ -532,7 +532,6 @@ public class MySQLHelper {
                 attributeString = attributeString + (getColumns()[i] + " " + attributes[i]);
             }
         }
-        System.out.println(attributeString);
         return attributeString;
     }
 

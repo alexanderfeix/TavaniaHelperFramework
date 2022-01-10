@@ -71,8 +71,10 @@ public class TavaniaHelperFramework {
         tavaniaThread.registerThread(mySQLDatabase);
         TavaniaThread.stopThread("TestThread", mySQLDatabase);
         System.out.println("Running threads: " + TavaniaThread.runningThreads());
-        MySQLLogger.getInstance().initialize("localhost", "mysql", "mysqllloger", "", 3306);
-        MySQLLogger.getInstance().log(LoggerType.SUCCESS, TavaniaHelperFramework.class, "Nice, that's the first log!");
     }
      */
+    public static void main(String[] args) {
+        MySQLLogger.getInstance().initialize("localhost", "mysql", "test", "", 3306);
+        MySQLLogger.getInstance().log(LoggerType.SUCCESS, TavaniaHelperFramework.class, "Nice, that's the first log!");
+    }
 }

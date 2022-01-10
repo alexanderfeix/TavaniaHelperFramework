@@ -46,8 +46,8 @@ public class MySQLLogger {
     }
 
     private void createTable() {
-        String[] attributes = {"VARCHAR(100)", "VARCHAR(100)", "TEXT"};
-        String[] columns = {"LoggerType", "Class", "Message"};
+        String[] attributes = {"VARCHAR(100)", "VARCHAR(100)", "VARCHAR(100)", "TEXT"};
+        String[] columns = {"Date", "LoggerType", "Class", "Message"};
         getMySQLDatabase().getMySQLHelper().createTable("MySQLLogger", attributes, columns);
     }
 
@@ -55,7 +55,7 @@ public class MySQLLogger {
         Date date = new Date();
         GregorianCalendar gregorianCalendar = new GregorianCalendar();
         gregorianCalendar.setGregorianChange(date);
-        String[] content = {loggerType.toString(), currentClass.getCanonicalName(), message};
+        String[] content = {gregorianCalendar.getTime().toString(), loggerType.toString(), currentClass.getCanonicalName(), message};
         getMySQLDatabase().getMySQLHelper().insert(content);
     }
 
@@ -63,7 +63,7 @@ public class MySQLLogger {
         Date date = new Date();
         GregorianCalendar gregorianCalendar = new GregorianCalendar();
         gregorianCalendar.setGregorianChange(date);
-        String[] content = {"UNKNOWN", currentClass.getCanonicalName(), message};
+        String[] content = {gregorianCalendar.getTime().toString(),"UNKNOWN", currentClass.getCanonicalName(), message};
         getMySQLDatabase().getMySQLHelper().insert(content);
     }
 
@@ -71,7 +71,7 @@ public class MySQLLogger {
         Date date = new Date();
         GregorianCalendar gregorianCalendar = new GregorianCalendar();
         gregorianCalendar.setGregorianChange(date);
-        String[] content = {loggerType.toString(), "", message};
+        String[] content = {gregorianCalendar.getTime().toString(),loggerType.toString(), "", message};
         getMySQLDatabase().getMySQLHelper().insert(content);
     }
 }
