@@ -3,6 +3,8 @@ package net.tavania.framework.main;
 import net.tavania.framework.command.CommandExecuter;
 import net.tavania.framework.debug.DebugManager;
 import net.tavania.framework.logger.ConsoleLogger;
+import net.tavania.framework.logger.LoggerType;
+import net.tavania.framework.logger.MySQLLogger;
 import net.tavania.framework.sql.mysql.MySQLDatabase;
 import net.tavania.framework.thread.TavaniaThread;
 
@@ -69,6 +71,8 @@ public class TavaniaHelperFramework {
         tavaniaThread.registerThread(mySQLDatabase);
         TavaniaThread.stopThread("TestThread", mySQLDatabase);
         System.out.println("Running threads: " + TavaniaThread.runningThreads());
+        MySQLLogger.getInstance().initialize("localhost", "mysql", "mysqllloger", "", 3306);
+        MySQLLogger.getInstance().log(LoggerType.SUCCESS, TavaniaHelperFramework.class, "Nice, that's the first log!");
     }
      */
 }

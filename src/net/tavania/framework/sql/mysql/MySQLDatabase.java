@@ -6,6 +6,8 @@ import net.tavania.framework.logger.LoggerType;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class MySQLDatabase {
 
